@@ -5,12 +5,12 @@ test('creates employee object', () => {
     
 
     
-    const employee = new Employee('tim', 1, 'tim@tim.com');
+    const employee = new Employee('nemo', 1, 'email@email.com');
 
 
-    expect(employee.name).toBe('tim');
+    expect(employee.name).toBe('nemo');
     expect(employee.id).toEqual(1);
-    expect(employee.email).toBe('tim@tim.com');
+    expect(employee.email).toBe('email@email.com');
 
     
 });
