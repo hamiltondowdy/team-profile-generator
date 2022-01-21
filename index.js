@@ -1,6 +1,6 @@
 // Require Modules
 const fs = require('fs');
-const Inquirer = require('inquirer');
+const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -9,28 +9,30 @@ const Intern = require('./lib/Intern');
 const generateTeam = require('./src/generateTeam.js');
 
 
+teamArray = [];
+
 function newTeam () {
 
     function createTeam () {
-      inquirer.prompt([{
-        type: "list",
-        message: "What type of employee would you like to add to your team?",
-        name: "addEmployeePrompt",
-        choices: ["Manager", "Engineer", "Intern", "No more team members are needed."]
-      }]).then(function (userInput) {
-        switch(userInput.addEmployeePrompt) {
-          case "Manager":
-            addManager();
-            break;
-          case "Engineer":
-            addEngineer();
-            break;
-          case "Intern":
-            addIntern();
-            break;
+        inquirer.prompt([{
+          type: "list",
+          message: "What type of employee would you like to add to your team?",
+          name: "addEmployeePrompt",
+          choices: ["Manager", "Engineer", "Intern", "No more team members are needed."]
+        }]).then(function (userInput) {
+          switch(userInput.addEmployeePrompt) {
+            case "Manager":
+              addManager();
+              break;
+            case "Engineer":
+              addEngineer();
+              break;
+            case "Intern":
+              addIntern();
+              break;
   
           default:
-            htmlBuilder();
+            buildTeam();
         }
       })
     }
@@ -142,7 +144,7 @@ function addEngineer() {
 
 
 
-function htmlBuilder () {
+function buildTeam () {
     console.log("Team created!")
 
     fs.writeFileSync('team.html', generateTeam(teamArray), "UTF-8")
